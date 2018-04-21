@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./main.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <h1>Machine-Generated Newspaper Clippings</h1>
+        <p></p>
+        <button id='js-clippingButton'>Request Clipping</button>
+    </header>
+
+    <p class="result"></p>
+
+    <article class="clipping">
+        <h1 class="clipping-title">Daily Drinks Le Badson Around the Scaremont Obama Revolution</h1>
+        <h2 class="clipping-location clipping-meta">Philadelphia</h2>
+        <p class="clipping-intro clipping-meta">Senate affirm to a meanu marine reality fight pack overturn reinforunion site</p>
+        <p class="clipping-byline"></p>
+        <main class="clipping-body">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, necessitatibus fuga sapiente voluptatum, voluptatibus
+                vitae possimus numquam expedita odio ad officiis ea magni ipsa aliquam. A explicabo officiis fugit corrupti
+                ullam eligendi, pariatur dolorum atque doloribus commodi, quasi voluptates!</p>
+            <p> Culpa fugit veniam quam fuga praesentium recusandae deleniti. Possimus, voluptatibus corporis? Dolorem sequi
+                sit veniam deleniti numquam similique minus, tenetur animi accusamus impedit pariatur inventore nam labore
+                nemo ipsam vero doloribus!</p>
+        </main>
+    </article>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var gra = function (min, max) {
+            return Math.random() * (max - min) + min;
+        }
+        var gri = function (min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        const clippingBtn = document.querySelector('#js-clippingButton')
+        const resultEl = document.querySelector('.result')
+        var socket = io();
+
+        const generateClipping = function (text) {
+            console.log(text)
+            let titleEl = document.querySelector('.clipping-title')
+            let words = text.split(' ');
+            titleEl.innerHTML = words[0] + words[1] + words[2];
+        }
+        socket.on('result', function (data) {
+            generateClipping(data)
+        });
+
+
+        clippingBtn.addEventListener('click', function (e) {
+            socket.emit('clipping request')
+            console.log('hi')
+        });
+
+        (function (d) {
+            var config = {
+                kitId: 'fnf6iek',
+                scriptTimeout: 3000,
+                async: true
+            },
+                h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+        })(document);
+
+    </script>
+</body>
+
+</html>

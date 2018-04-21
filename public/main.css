@@ -1,0 +1,75 @@
+* {
+    padding: 0; 
+    margin: 0;
+    font-size: 100%;
+    box-sizing: border-box;
+    font-weight: normal;
+}
+body {
+    background: rgb(20,20,20);
+    padding: 2rem;
+}
+
+.site-header {
+    color: white;
+    font-family: sans-serif;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.clipping {
+    background: lightgray;
+    width: 16rem;
+    padding: .8rem;
+    padding-top: 2rem;
+    transform-origin: top left;
+    height: 40rem;
+    overflow: hidden;
+}
+
+.clipping-meta {
+    border-top: .2px solid black;
+    padding-top: .2rem;
+    padding-bottom: 1.2rem;
+}
+
+.clipping-title {
+    font-size: 3em;
+    line-height: .98;
+    font-weight: 800;
+    font-family: "acumin-pro-extra-condensed";
+    margin-bottom: 1rem;
+    -ms-hyphens: auto;
+}
+
+.clipping-intro {
+    font-size: 1.4rem;
+    border-bottom: .5px solid black;
+    margin-bottom: .2rem;
+}
+
+.clipping-location {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-size: .7rem;
+    font-weight: 600;
+}
+.clipping-byline {
+
+}
+.clipping-body {
+    font-size: 1.1rem;
+    line-height: 1.1;
+    text-align: justify;
+    word-break: normal;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+.clipping-body p {
+    text-indent: 1rem;
+}
+.clipping-body p:first-child {
+    text-indent: 0;
+}
