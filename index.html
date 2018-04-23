@@ -49,8 +49,9 @@
         const generateClipping = function (text) {
             console.log(text)
             let titleEl = document.querySelector('.clipping-title')
-            let words = text.split(' ');
-            titleEl.innerHTML = words[0] + words[1] + words[2];
+            let bodyEl = document.querySelector('.clipping-body')
+            text.replace
+            bodyEl.innerHTML = text;
         }
         socket.on('result', function (data) {
             generateClipping(data)
