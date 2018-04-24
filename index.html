@@ -5,17 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./css/main.css">
     <title>Document</title>
 </head>
 
 <body>
 
-    <header class="site-header">
-        <h1>Machine-Generated Newspaper Clippings</h1>
-        <p></p>
-        <button id='js-clippingButton'>Request Clipping</button>
-    </header>
+    <main class="site-intro">
+        <h1>Machine Clippings</h1>
+        <p>A recurrent neural network<a href="#1" class="cite">1</a> trained on five years of headlines, article summaries, locations and bylines from the New York Times <a class='cite' href="#1">2</a> was used to create this archive of imaginary newspaper clippings. Starting with no understanding of the English language, the network learns to immitate the content and tone of the source material.</p>
+        <button id='js-clippingButton'>Tap to generate a new clipping</button>
+        <ul class="footnotes">
+            <li class="footnote">Karpathy, Andrei (2015): <a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">The unreasonable Effectiveness of Recurrent Neural Networks.</a> Using a <a href="https://github.com/sherjilozair/char-rnn-tensorflow">Tensorflow implementation</a> by Sherjil Ozair.</li>
+            <li class="footnote">Obtained through the <a href="https://developer.nytimes.com/">New York Times API</a></li>
+        </ul>
+    </main>
 
     <p class="result"></p>
 
@@ -34,44 +38,17 @@
         </main>
     </article>
 
-    <script src="/socket.io/socket.io.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/draggabilly/2.2.0/draggabilly.pkgd.min.js"></script>
+   <script src="./js/main.js"></script>
     <script>
-        var gra = function (min, max) {
-            return Math.random() * (max - min) + min;
-        }
-        var gri = function (min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-        const clippingBtn = document.querySelector('#js-clippingButton')
-        const resultEl = document.querySelector('.result')
-        var socket = io();
-
-        const generateClipping = function (text) {
-            console.log(text)
-            let titleEl = document.querySelector('.clipping-title')
-            let bodyEl = document.querySelector('.clipping-body')
-            text.replace
-            bodyEl.innerHTML = text;
-        }
-        socket.on('result', function (data) {
-            generateClipping(data)
-        });
-
-
-        clippingBtn.addEventListener('click', function (e) {
-            socket.emit('clipping request')
-            console.log('hi')
-        });
-
-        (function (d) {
-            var config = {
-                kitId: 'fnf6iek',
-                scriptTimeout: 3000,
-                async: true
-            },
-                h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
-        })(document);
-
+      (function (d) {
+    var config = {
+        kitId: 'fnf6iek',
+        scriptTimeout: 3000,
+        async: true
+    },
+        h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+})(document);
     </script>
 </body>
 

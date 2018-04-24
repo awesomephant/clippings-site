@@ -1,0 +1,60 @@
+* {
+    padding: 0; 
+    margin: 0;
+    font-size: 100%;
+    box-sizing: border-box;
+    font-weight: normal;
+}
+body {
+    background: $black;
+    padding: 2rem;
+}
+a {
+    color: inherit;
+}
+
+.site-intro {
+    color: white;
+    font-family: $sans;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    p {
+        line-height: 1.1
+    }
+
+    button {
+        color: white;
+        background: none;
+        border: 0;
+        appearance: none;
+        cursor: pointer;
+        text-decoration: underline;
+    }   
+}
+
+.cite {
+    color: white;
+    font-size: .7em;
+    text-decoration: none;
+    vertical-align: super;
+}
+
+.footnotes {
+    counter-reset: note;
+    max-width: 30rem;
+    padding-top: 2rem;
+}
+
+.footnote {
+    font-weight: 300;
+    font-size: 1.1rem;
+    list-style: none;
+    text-indent: hanging 1.5rem;
+    counter-increment: note;
+    &:before {
+        content: counter(note);
+        display: inline-block;
+        width: 1rem;
+        margin-right: .5rem;
+    }
+}
