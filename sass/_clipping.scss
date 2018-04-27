@@ -1,14 +1,25 @@
+$column-width: 16rem; // This would be 12 picas
+
 .clipping {
-    background: lightgray;
-    width: 16rem;
+    background: $newsprint;
+    width: $column-width;
     padding: .8rem;
+    position: absolute;
+    top: 100px;
+    left: 100px;
     padding-top: 2rem;
-    transform-origin: top left;
     height: 40rem;
-    transform-origin: center;
     overflow: hidden;
     border-radius: 1px;
-    box-shadow: 1px 1px 0px 2px rgba(black, .8);
+    box-shadow: 0px 0px 0px 1px rgba(black, .2);
+
+    &.text-columns-2 {
+        width: 2 * $column-width;
+    }
+    &.text-columns-3 {
+        width: 3 * $column-width;
+    }
+
 
     &.is-dragging {
     }
@@ -21,12 +32,39 @@
 }
 
 .clipping-title {
-    font-size: 3em;
-    line-height: .98;
     font-weight: 800;
-    font-family: $condensed;
     margin-bottom: 1rem;
     hyphens: auto;
+    
+    &.style-0 {
+        font-family: $serif;
+        font-weight: normal;
+        line-height: 1;
+        font-size: 2.4rem;
+    }
+    &.style-1 {
+        font-size: 3rem;
+        padding-top: .5rem;
+        border-top: .5rem solid $black;
+        font-family: $serif;
+        font-weight: normal;
+        line-height: .9;
+    }
+    &.style-2 {
+        font-size: 3rem;
+        padding-top: .5rem;
+        border-top: .5rem solid $black;
+        font-family: $sans;
+        font-weight: normal;
+        line-height: .9;
+    }
+    &.style-3 {
+        font-size: 3rem;
+        padding-top: .5rem;
+        font-family: 'kepler-std-condensed-subhead';
+        font-weight: normal;
+        line-height: .9;
+    }
 }
 
 .clipping-intro {
@@ -48,8 +86,13 @@
     line-height: 1.1;
     text-align: justify;
     word-break: normal;
-    -ms-hyphens: auto;
     hyphens: auto;
+    .text-columns-2 &{
+        column-count: 2;
+    }
+    .text-columns-3 &{
+        column-count: 3;
+    }
     p {
         text-indent: 1rem;
         :first-child {

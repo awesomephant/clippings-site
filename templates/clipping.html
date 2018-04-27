@@ -1,0 +1,13 @@
+<article style='height: {{height}}rem; z-index: {{index}}' class="clipping text-columns-{{ columnCount }}">
+    <h1 class="clipping-title style-{{headlineStyle}}">{{headline}}</h1>
+    <h2 class="clipping-location clipping-meta">Philadelphia</h2>
+    {{#if intro}}
+    <p class="clipping-intro clipping-meta">Senate affirm to a meanu marine reality fight pack overturn reinforunion site</p>
+    {{/if}}
+    <p class="clipping-byline"></p>
+    <main class="clipping-body">
+       {{#each body}}
+        <p>{{this}}</p>
+       {{/each}}
+    </main>
+</article>

@@ -22,7 +22,7 @@ function makeRequest(url, callback) {
     httpRequest.onreadystatechange = function () {
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
             if (httpRequest.status === 200) {
-                callback(httpRequest.responseText);
+                callback(httpRequest);
             } else {
                 alert('There was a problem with the request.');
             }
@@ -41,44 +41,68 @@ const getSequence = function (source, length) {
     //let sequence = words.slice(gri(0, words.length - length), length)
     let index = gri(0, words.length - length);
     let sequence = words.slice(index, index + length)
-    console.log(sequence)
     return sequence.join(' ');
 }
 
 const loadText = function () {
     makeRequest('./data/nyt-headlines.txt', function (response) {
-        data.headlines = response;
+        data.headlines = response.responseText;
     })
 }
-var draggies;
-const init = function () {
+var template;
+var clippingCount = 0;
+var draggies = [];
 
-    let clippingElements = document.querySelectorAll('.clipping');
-    let clippings = []
-    draggies = []
-    for (var i = 0; i < clippingElements.length; i++) {
-        let clipping = clippingElements[i];
-        let draggie = new Draggabilly(clipping, {
-            // options...
-        });
-        draggies.push(draggie);
+const makeParagraphs = function(s){
+    let pCount = 10;
+    let index = 0;
+    let paragraphs = [];
+    for (let i = 0; i < pCount; i++){
+        let length = gri(100, 200)
+        paragraphs.push(s.substr(index, length))
+        index += length;
     }
+    return paragraphs;
+}
+
+const registerDrag = function (el) {
+    let draggie = new Draggabilly(el, {
+    });
+    draggie.setPosition( 100, 100 )
+    draggies.push(draggie);
+}
+const init = function () {
+    makeRequest('./templates/clipping.html', function (response) {
+        loadText()
+        template = Handlebars.compile(response.responseText);
+    })
+    let clippings = []
 }
 
 const generateClipping = function (text) {
-    let clippingEl = document.querySelector('.clipping')
-    let headlineEl = document.querySelector('.clipping-title')
-    let bodyEl = document.querySelector('.clipping-body')
+    clippingCount++;
+    let clippingEl = document.querySelector('.clippings')
+    let context = {
+        headline: capitalise(getSequence(data.headlines, gri(6, 10))),
+        body: makeParagraphs(getSequence(data.headlines, 400)),
+        rotation: gra(-6, 6),
+        height: gra(22, 33),
+        columnCount: gri(1, 3),
+        headlineStyle: gri(0, 3),
+        index: clippingCount
+    }
 
-    let headline = capitalise(getSequence(data.headlines, gri(6, 10)))
-    headlineEl.innerHTML = headline;
-    clippingEl.style.transform = 'rotate(' + gra(-6, 6) + 'deg)'
+    html = template(context)
+    clippingEl.insertAdjacentHTML('afterbegin', html);
+    registerDrag(clippingEl.firstChild)
 }
-init();
-loadText();
 
+window.onload = function () {
+    init();
+};
+//loadText();
+//generateClipping();
 
 clippingBtn.addEventListener('click', function (e) {
-    console.log('hi')
     generateClipping()
 });
